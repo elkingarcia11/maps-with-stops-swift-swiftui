@@ -14,6 +14,13 @@
 		1EDC52062C7546CF00626679 /* CustomMapViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52052C7546CF00626679 /* CustomMapViewTests.swift */; };
 		1EDC52102C7546CF00626679 /* CustomMapViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC520F2C7546CF00626679 /* CustomMapViewUITests.swift */; };
 		1EDC52122C7546CF00626679 /* CustomMapViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52112C7546CF00626679 /* CustomMapViewUITestsLaunchTests.swift */; };
+		1EDC52242C75491900626679 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52232C75491900626679 /* Stop.swift */; };
+		1EDC52262C75494D00626679 /* OrderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52252C75494D00626679 /* OrderList.swift */; };
+		1EDC52292C75A9EB00626679 /* StopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52282C75A9EB00626679 /* StopViewModel.swift */; };
+		1EDC522B2C75AA4A00626679 /* OrderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC522A2C75AA4A00626679 /* OrderListViewModel.swift */; };
+		1EDC522D2C764D6700626679 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC522C2C764D6700626679 /* MapView.swift */; };
+		1EDC522F2C764D8700626679 /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC522E2C764D8700626679 /* StopDetailView.swift */; };
+		1EDC52312C764DAF00626679 /* OrderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52302C764DAF00626679 /* OrderListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +51,13 @@
 		1EDC520B2C7546CF00626679 /* CustomMapViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomMapViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EDC520F2C7546CF00626679 /* CustomMapViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapViewUITests.swift; sourceTree = "<group>"; };
 		1EDC52112C7546CF00626679 /* CustomMapViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1EDC52232C75491900626679 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		1EDC52252C75494D00626679 /* OrderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderList.swift; sourceTree = "<group>"; };
+		1EDC52282C75A9EB00626679 /* StopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopViewModel.swift; sourceTree = "<group>"; };
+		1EDC522A2C75AA4A00626679 /* OrderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewModel.swift; sourceTree = "<group>"; };
+		1EDC522C2C764D6700626679 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		1EDC522E2C764D8700626679 /* StopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailView.swift; sourceTree = "<group>"; };
+		1EDC52302C764DAF00626679 /* OrderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +108,11 @@
 		1EDC51F32C7546CE00626679 /* CustomMapView */ = {
 			isa = PBXGroup;
 			children = (
+				1EDC52222C7548FF00626679 /* Views */,
+				1EDC52212C7548F800626679 /* ViewModels */,
+				1EDC52202C7548F200626679 /* Models */,
+				1EDC521F2C7546ED00626679 /* StopView */,
+				1EDC521E2C7546E700626679 /* MapView */,
 				1EDC51F42C7546CE00626679 /* CustomMapViewApp.swift */,
 				1EDC51F62C7546CE00626679 /* ContentView.swift */,
 				1EDC51F82C7546CF00626679 /* Assets.xcassets */,
@@ -125,6 +144,48 @@
 				1EDC52112C7546CF00626679 /* CustomMapViewUITestsLaunchTests.swift */,
 			);
 			path = CustomMapViewUITests;
+			sourceTree = "<group>";
+		};
+		1EDC521E2C7546E700626679 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
+		1EDC521F2C7546ED00626679 /* StopView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = StopView;
+			sourceTree = "<group>";
+		};
+		1EDC52202C7548F200626679 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1EDC52232C75491900626679 /* Stop.swift */,
+				1EDC52252C75494D00626679 /* OrderList.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1EDC52212C7548F800626679 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1EDC52282C75A9EB00626679 /* StopViewModel.swift */,
+				1EDC522A2C75AA4A00626679 /* OrderListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1EDC52222C7548FF00626679 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1EDC522C2C764D6700626679 /* MapView.swift */,
+				1EDC522E2C764D8700626679 /* StopDetailView.swift */,
+				1EDC52302C764DAF00626679 /* OrderListView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +318,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EDC522D2C764D6700626679 /* MapView.swift in Sources */,
+				1EDC52292C75A9EB00626679 /* StopViewModel.swift in Sources */,
+				1EDC52312C764DAF00626679 /* OrderListView.swift in Sources */,
 				1EDC51F72C7546CE00626679 /* ContentView.swift in Sources */,
+				1EDC522F2C764D8700626679 /* StopDetailView.swift in Sources */,
 				1EDC51F52C7546CE00626679 /* CustomMapViewApp.swift in Sources */,
+				1EDC522B2C75AA4A00626679 /* OrderListViewModel.swift in Sources */,
+				1EDC52262C75494D00626679 /* OrderList.swift in Sources */,
+				1EDC52242C75491900626679 /* Stop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
