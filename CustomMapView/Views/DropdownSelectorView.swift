@@ -1,34 +1,63 @@
 import SwiftUI
 
 struct DropdownSelectorView: View {
-    @State private var selectedOption: String = "Select a driver"
+    @Binding var selectedDriver: String
     
-    let options: [String] = ["All drivers", "Bronelys", "Miguel"]
-
+    let numberOfStops: Int
+    let drivers: [String]
+    let stopIconName: String = "mappin.and.ellipse"
+    let driverIconName: String = "eye"
+    let roundedRectangleCornerRadius: CGFloat = 10
+    let shadowRadius: CGFloat = 5
+    let fixedHorizontalSize : Bool = false
+    let fixedVerticalSize : Bool = true
+    let oneSidedPadding : CGFloat = 8
+    
+    // Computed property to provide a default value for `selectedDriver`
+    var defaultSelectedDriver: String {
+        drivers.first ?? "All Drivers"
+    }
+    
+    var stopsCount: String {
+        "\(numberOfStops) stops"
+    }
+    
+    
     var body: some View {
-        VStack {
+        HStack {
+            // Left element
+            HStack {
+                Image(systemName: stopIconName)
+                Text(stopsCount)
+            }
+            .padding([.top, .bottom, .leading])
+            .padding(.trailing, oneSidedPadding)
+            
+            Divider()
+            
+            // Centered Menu
             Menu {
-                ForEach(options, id: \.self) { option in
+                ForEach(drivers, id: \.self) { option in
                     Button(action: {
-                        selectedOption = option
+                        selectedDriver = option
                     }) {
                         Text(option)
                     }
                 }
             } label: {
-                HStack {
-                    Text(selectedOption)
-                        .foregroundColor(.black)
-                    Spacer()
-                    Image(systemName: "arrow.down")
-                        .foregroundColor(.gray)
-                }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(8)
-                .shadow(radius: 5)
+                Label(selectedDriver, systemImage: driverIconName)
             }
+            .padding([.top, .bottom, .trailing])
+            .padding(.leading, oneSidedPadding)
+            
+            Spacer()
         }
-        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: roundedRectangleCornerRadius)
+                .fill(Color.white)
+                .shadow(radius: shadowRadius)
+        )
+        .frame(maxWidth: .infinity)
+        .fixedSize(horizontal: fixedHorizontalSize, vertical: fixedVerticalSize)
     }
 }

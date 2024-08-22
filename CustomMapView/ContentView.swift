@@ -10,18 +10,28 @@ struct ContentView: View {
         Stop(address: "133 W 197th St ", city: "Bronx", state: "NY", zipCode: "10468", coordinates: CLLocationCoordinate2D(latitude: 40.8610, longitude: -73.9080), comments: "Recoger 2 caja", driver: "Bronelys", completed: false)
     ]
     
-    
+    @State private var drivers: [String] = ["All Drivers", "Bronelys", "Miguel"]
+    @State private var selectedDriver: String = "All Drivers"
+    var filteredStops: [Stop] {
+        if selectedDriver == "All Drivers" {
+            return stops
+        } else {
+            return stops.filter { $0.driver == selectedDriver }
+        }
+    }
     var body: some View {
-        ZStack(alignment: .bottom) {
-            DropdownSelectorView()
+        ZStack(alignment: .top) {
             
             // Initialize and display MapView
-            MapView(stops: $stops, markerColor: .blue, distance: 30000)
+            MapView(stops: filteredStops, markerColor: .blue, distance: 30000, animationDuration: 1.0)
                 .edgesIgnoringSafeArea(.all)
             /*.sheet(isPresented: $showSheet) {
              OrderListView(viewModel: orderListViewModel, circleColor: .blue, diameter: 33)
              .presentationDetents([.medium, .large])
              }*/
+            
+            DropdownSelectorView(selectedDriver: $selectedDriver, numberOfStops: filteredStops.count, drivers: drivers)
+                .padding()
         }
     }
     

@@ -3,16 +3,26 @@ import MapKit
 
 struct MapView: View {
     
-    @State private var position: MapCameraPosition = .automatic
+    @State private var position: MapCameraPosition
     @State private var selectedId: String?
     
-    @Binding var stops: [Stop]
+    let stops: [Stop]
+    let markerColor: Color
+    let distance: Double
+    let animationDuration: CGFloat
     
-    var markerColor: Color
-    var distance: Double
-    
+    // Computed property to get the selected stop
     private var selectedStop: Stop? {
         stops.first { $0.address == selectedId }
+    }
+    
+    // Initializer
+    init(stops: [Stop], markerColor: Color, distance: Double, animationDuration: CGFloat, initialPosition: MapCameraPosition? = nil) {
+        self.stops = stops
+        self.markerColor = markerColor
+        self.distance = distance
+        self.animationDuration = animationDuration
+        _position = State(initialValue: initialPosition ?? .camera(MapCamera(centerCoordinate: stops.first?.coordinates ?? CLLocationCoordinate2D(), distance: distance)))
     }
     
     var body: some View {
@@ -27,7 +37,7 @@ struct MapView: View {
         }
         .onChange(of: selectedId) {
             if let stop = selectedStop {
-                withAnimation(.easeInOut(duration: 1.0)) {
+                withAnimation(.easeInOut(duration: animationDuration)) {
                     position = .camera(MapCamera(
                         centerCoordinate: stop.coordinates,
                         distance: distance
@@ -35,7 +45,5 @@ struct MapView: View {
                 }
             }
         }
-
-
     }
 }
