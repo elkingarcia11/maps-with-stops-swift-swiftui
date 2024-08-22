@@ -14,13 +14,12 @@
 		1EDC52062C7546CF00626679 /* CustomMapViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52052C7546CF00626679 /* CustomMapViewTests.swift */; };
 		1EDC52102C7546CF00626679 /* CustomMapViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC520F2C7546CF00626679 /* CustomMapViewUITests.swift */; };
 		1EDC52122C7546CF00626679 /* CustomMapViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52112C7546CF00626679 /* CustomMapViewUITestsLaunchTests.swift */; };
-		1EDC52242C75491900626679 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52232C75491900626679 /* Stop.swift */; };
-		1EDC52262C75494D00626679 /* OrderList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52252C75494D00626679 /* OrderList.swift */; };
 		1EDC52292C75A9EB00626679 /* StopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52282C75A9EB00626679 /* StopViewModel.swift */; };
-		1EDC522B2C75AA4A00626679 /* OrderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC522A2C75AA4A00626679 /* OrderListViewModel.swift */; };
 		1EDC522D2C764D6700626679 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC522C2C764D6700626679 /* MapView.swift */; };
 		1EDC522F2C764D8700626679 /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC522E2C764D8700626679 /* StopDetailView.swift */; };
-		1EDC52312C764DAF00626679 /* OrderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52302C764DAF00626679 /* OrderListView.swift */; };
+		1EDC52332C76F0D000626679 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52322C76F0D000626679 /* LocationManager.swift */; };
+		1EDC52352C77B45A00626679 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52342C77B45A00626679 /* Models.swift */; };
+		1EDC52392C77BCC800626679 /* DropdownSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52382C77BCC800626679 /* DropdownSelectorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,13 +50,12 @@
 		1EDC520B2C7546CF00626679 /* CustomMapViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomMapViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EDC520F2C7546CF00626679 /* CustomMapViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapViewUITests.swift; sourceTree = "<group>"; };
 		1EDC52112C7546CF00626679 /* CustomMapViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		1EDC52232C75491900626679 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
-		1EDC52252C75494D00626679 /* OrderList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderList.swift; sourceTree = "<group>"; };
 		1EDC52282C75A9EB00626679 /* StopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopViewModel.swift; sourceTree = "<group>"; };
-		1EDC522A2C75AA4A00626679 /* OrderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewModel.swift; sourceTree = "<group>"; };
 		1EDC522C2C764D6700626679 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1EDC522E2C764D8700626679 /* StopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailView.swift; sourceTree = "<group>"; };
-		1EDC52302C764DAF00626679 /* OrderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListView.swift; sourceTree = "<group>"; };
+		1EDC52322C76F0D000626679 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		1EDC52342C77B45A00626679 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		1EDC52382C77BCC800626679 /* DropdownSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownSelectorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,8 +161,8 @@
 		1EDC52202C7548F200626679 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1EDC52232C75491900626679 /* Stop.swift */,
-				1EDC52252C75494D00626679 /* OrderList.swift */,
+				1EDC52322C76F0D000626679 /* LocationManager.swift */,
+				1EDC52342C77B45A00626679 /* Models.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -173,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				1EDC52282C75A9EB00626679 /* StopViewModel.swift */,
-				1EDC522A2C75AA4A00626679 /* OrderListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -183,7 +180,7 @@
 			children = (
 				1EDC522C2C764D6700626679 /* MapView.swift */,
 				1EDC522E2C764D8700626679 /* StopDetailView.swift */,
-				1EDC52302C764DAF00626679 /* OrderListView.swift */,
+				1EDC52382C77BCC800626679 /* DropdownSelectorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,13 +317,12 @@
 			files = (
 				1EDC522D2C764D6700626679 /* MapView.swift in Sources */,
 				1EDC52292C75A9EB00626679 /* StopViewModel.swift in Sources */,
-				1EDC52312C764DAF00626679 /* OrderListView.swift in Sources */,
+				1EDC52352C77B45A00626679 /* Models.swift in Sources */,
+				1EDC52332C76F0D000626679 /* LocationManager.swift in Sources */,
 				1EDC51F72C7546CE00626679 /* ContentView.swift in Sources */,
 				1EDC522F2C764D8700626679 /* StopDetailView.swift in Sources */,
+				1EDC52392C77BCC800626679 /* DropdownSelectorView.swift in Sources */,
 				1EDC51F52C7546CE00626679 /* CustomMapViewApp.swift in Sources */,
-				1EDC522B2C75AA4A00626679 /* OrderListViewModel.swift in Sources */,
-				1EDC52262C75494D00626679 /* OrderList.swift in Sources */,
-				1EDC52242C75491900626679 /* Stop.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +489,7 @@
 				DEVELOPMENT_TEAM = 49AKYU26GJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to provide better services.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -522,6 +519,7 @@
 				DEVELOPMENT_TEAM = 49AKYU26GJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "We need your location to provide better services.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
