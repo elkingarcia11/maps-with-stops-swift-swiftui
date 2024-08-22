@@ -34,23 +34,30 @@ struct DropdownSelectorView: View {
             .padding(.trailing, oneSidedPadding)
             
             Divider()
-            
-            // Centered Menu
-            Menu {
-                ForEach(drivers, id: \.self) { option in
-                    Button(action: {
-                        selectedDriver = option
-                    }) {
-                        Text(option)
+            HStack{
+                Menu {
+                    ForEach(drivers, id: \.self) { option in
+                        Button(action: {
+                            selectedDriver = option
+                        }) {
+                            Text(option)
+                        }
                     }
+                } label: {
+                    Label(selectedDriver, systemImage: driverIconName)
                 }
-            } label: {
-                Label(selectedDriver, systemImage: driverIconName)
+                Spacer()
             }
-            .padding([.top, .bottom, .trailing])
+            .padding([.top, .bottom])
             .padding(.leading, oneSidedPadding)
-            
-            Spacer()
+            Divider()
+            HStack{
+                Button(action: {}){
+                    Image(systemName: "list.bullet")
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+            .padding()
         }
         .background(
             RoundedRectangle(cornerRadius: roundedRectangleCornerRadius)
