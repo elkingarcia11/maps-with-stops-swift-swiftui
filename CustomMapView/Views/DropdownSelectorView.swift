@@ -3,7 +3,7 @@ import SwiftUI
 struct DropdownSelectorView: View {
     @State private var selectedOption: String = "Select a driver"
     
-    let options: [String] = ["Bronelys", "Miguel"]
+    let options: [String] = ["All drivers", "Bronelys", "Miguel"]
 
     var body: some View {
         VStack {

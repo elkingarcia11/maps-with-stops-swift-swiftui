@@ -1,37 +1,41 @@
 import SwiftUI
 import MapKit
 
-struct MapView : View {
-    @StateObject private var locationManager = LocationManager()
+struct MapView: View {
     
-    @State private var cameraPosition: MapCameraPosition = .camera(
-        .init(centerCoordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), distance: 100, heading: 0)
-    )
+    @State private var position: MapCameraPosition = .automatic
+    @State private var selectedId: String?
     
     @Binding var stops: [Stop]
     
     var markerColor: Color
+    var distance: Double
     
-    var distance : Double
+    private var selectedStop: Stop? {
+        stops.first { $0.address == selectedId }
+    }
     
     var body: some View {
-        Map(position: $cameraPosition) {
-            ForEach(stops.indices, id: \.self) {
-                index in
+        Map(position: $position, selection: $selectedId) {
+            ForEach(stops.indices, id: \.self) { index in
                 let stop = stops[index]
-                Marker(stop.address, monogram: Text(String(index+1)), coordinate: stop.coordinates).tint(markerColor).tag(index+1)
+                Marker(stop.address, monogram: Text(String(index + 1)), coordinate: stop.coordinates)
+                    .tint(markerColor)
+                    .tag(stop.address)
+                    .annotationTitles(.hidden)
             }
         }
-        .onAppear {
-            updateCameraPosition()
+        .onChange(of: selectedId) {
+            if let stop = selectedStop {
+                withAnimation(.easeInOut(duration: 1.0)) {
+                    position = .camera(MapCamera(
+                        centerCoordinate: stop.coordinates,
+                        distance: distance
+                    ))
+                }
+            }
         }
+
+
     }
-    
-    private func updateCameraPosition() {
-        let centerCoordinate = locationManager.location ?? stops.first?.coordinates ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
-        cameraPosition = .camera(
-            .init(centerCoordinate: centerCoordinate, distance: distance)
-        )
-    }
-    
 }

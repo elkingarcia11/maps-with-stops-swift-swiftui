@@ -17,7 +17,6 @@
 		1EDC52292C75A9EB00626679 /* StopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52282C75A9EB00626679 /* StopViewModel.swift */; };
 		1EDC522D2C764D6700626679 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC522C2C764D6700626679 /* MapView.swift */; };
 		1EDC522F2C764D8700626679 /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC522E2C764D8700626679 /* StopDetailView.swift */; };
-		1EDC52332C76F0D000626679 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52322C76F0D000626679 /* LocationManager.swift */; };
 		1EDC52352C77B45A00626679 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52342C77B45A00626679 /* Models.swift */; };
 		1EDC52392C77BCC800626679 /* DropdownSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52382C77BCC800626679 /* DropdownSelectorView.swift */; };
 /* End PBXBuildFile section */
@@ -53,7 +52,6 @@
 		1EDC52282C75A9EB00626679 /* StopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopViewModel.swift; sourceTree = "<group>"; };
 		1EDC522C2C764D6700626679 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1EDC522E2C764D8700626679 /* StopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailView.swift; sourceTree = "<group>"; };
-		1EDC52322C76F0D000626679 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		1EDC52342C77B45A00626679 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		1EDC52382C77BCC800626679 /* DropdownSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownSelectorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,7 +159,6 @@
 		1EDC52202C7548F200626679 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1EDC52322C76F0D000626679 /* LocationManager.swift */,
 				1EDC52342C77B45A00626679 /* Models.swift */,
 			);
 			path = Models;
@@ -318,7 +315,6 @@
 				1EDC522D2C764D6700626679 /* MapView.swift in Sources */,
 				1EDC52292C75A9EB00626679 /* StopViewModel.swift in Sources */,
 				1EDC52352C77B45A00626679 /* Models.swift in Sources */,
-				1EDC52332C76F0D000626679 /* LocationManager.swift in Sources */,
 				1EDC51F72C7546CE00626679 /* ContentView.swift in Sources */,
 				1EDC522F2C764D8700626679 /* StopDetailView.swift in Sources */,
 				1EDC52392C77BCC800626679 /* DropdownSelectorView.swift in Sources */,
