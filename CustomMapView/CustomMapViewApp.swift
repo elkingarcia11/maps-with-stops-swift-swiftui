@@ -4,7 +4,7 @@ import SwiftUI
 struct CustomMapViewApp: App {
     var body: some Scene {
         WindowGroup {
-            MapScreenView()
+            MapWithStopsView()
         }
     }
 }

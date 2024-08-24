@@ -2,39 +2,56 @@ import SwiftUI
 import MapKit
 
 struct MapWithStopsView: View {
-    @StateObject private var viewModel = MapScreenViewModel()
+    @StateObject private var stopListViewModel = StopListViewModel()
+    @StateObject private var mapViewModel = MapViewModel()
+    @StateObject private var driverListViewModel = DriverListViewModel()
     
     var body: some View {
         ZStack(alignment: .top) {
-            MapView(
-                position: $viewModel.position, stops: viewModel.filteredStops,
+            // Map view with stops and other configurations
+            StopMapView(
+                position: $mapViewModel.position,
+                stops: stopListViewModel.filteredStops,
                 markerColor: .blue,
-                distance: viewModel.distance,
-                animationDuration: viewModel.animationDuration,
-                selectedStop: $viewModel.selectedStop,
-                showSheet: $viewModel.showSheet
+                distance: mapViewModel.distance,
+                animationDuration: mapViewModel.animationDuration,
+                selectedStop: $mapViewModel.selectedStop,
+                showSheet: $mapViewModel.showSheet
             )
+            .onAppear(perform: updateMapPosition)
             .edgesIgnoringSafeArea(.all)
-            .sheet(isPresented: $viewModel.showSheet) {
-                if let stop = viewModel.selectedStop {
-                    StopDetailView(
+            .sheet(isPresented: $mapViewModel.showSheet) {
+                if let selectedStop = mapViewModel.selectedStop {
+                    StopInfoView(
                         stop: Binding(
-                            get: { stop },
-                            set: { viewModel.selectedStop = $0 }
+                            get: { selectedStop },
+                            set: { mapViewModel.selectedStop = $0 }
                         ),
-                        showSheet: $viewModel.showSheet,
-                        viewModel: viewModel
+                        showSheet: $mapViewModel.showSheet,
+                        viewModel: stopListViewModel
                     )
                     .presentationDetents([.medium, .large])
                 }
             }
             
-            DropdownSelectorView(selectedDriver: $viewModel.selectedDriver, numberOfStops: viewModel.filteredStops.count, drivers: viewModel.drivers)
-                .padding()
+            // Driver selector view
+            DriverSelectorView(
+                selectedDriver: $stopListViewModel.selectedDriver,
+                numberOfStops: stopListViewModel.filteredStops.count,
+                drivers: driverListViewModel.drivers
+            )
+            .padding()
+        }
+    }
+    
+    private func updateMapPosition() {
+        // Update map position with the first stop or a default value
+        if let firstStop = stopListViewModel.stops.first {
+            mapViewModel.updatePosition(for: firstStop)
         }
     }
 }
 
 #Preview {
-    MapScreenView()
+    MapWithStopsView()
 }
