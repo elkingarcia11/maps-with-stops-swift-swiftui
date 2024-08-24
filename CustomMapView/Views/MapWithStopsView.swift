@@ -1,29 +1,28 @@
 import SwiftUI
 import MapKit
 
-struct MapScreenView: View {
+struct MapWithStopsView: View {
     @StateObject private var viewModel = MapScreenViewModel()
-    @State private var showSheet = false
     
     var body: some View {
         ZStack(alignment: .top) {
             MapView(
-                stops: viewModel.filteredStops,
+                position: $viewModel.position, stops: viewModel.filteredStops,
                 markerColor: .blue,
-                distance: 30000,
-                animationDuration: 1.0,
+                distance: viewModel.distance,
+                animationDuration: viewModel.animationDuration,
                 selectedStop: $viewModel.selectedStop,
-                showSheet: $showSheet
+                showSheet: $viewModel.showSheet
             )
             .edgesIgnoringSafeArea(.all)
-            .sheet(isPresented: $showSheet) {
+            .sheet(isPresented: $viewModel.showSheet) {
                 if let stop = viewModel.selectedStop {
                     StopDetailView(
                         stop: Binding(
                             get: { stop },
                             set: { viewModel.selectedStop = $0 }
                         ),
-                        showSheet: $showSheet,
+                        showSheet: $viewModel.showSheet,
                         viewModel: viewModel
                     )
                     .presentationDetents([.medium, .large])

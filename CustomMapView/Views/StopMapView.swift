@@ -3,8 +3,8 @@ import MapKit
 
 struct MapView: View {
     
-    @State private var position: MapCameraPosition
-    @State private var selectedId: String?
+    @Binding var position: MapCameraPosition
+    @State var selectedId: String?
     
     let stops: [Stop]
     let markerColor: Color
@@ -13,18 +13,7 @@ struct MapView: View {
     
     @Binding var selectedStop: Stop? // Binding to pass selected stop back to ContentView
     @Binding var showSheet: Bool // Binding to control sheet presentation
-    
-    // Initializer
-    init(stops: [Stop], markerColor: Color, distance: Double, animationDuration: CGFloat, selectedStop: Binding<Stop?>, showSheet: Binding<Bool>, initialPosition: MapCameraPosition? = nil) {
-        self.stops = stops
-        self.markerColor = markerColor
-        self.distance = distance
-        self.animationDuration = animationDuration
-        _selectedStop = selectedStop
-        _showSheet = showSheet
-        _position = State(initialValue: initialPosition ?? .camera(MapCamera(centerCoordinate: stops.first?.coordinates ?? CLLocationCoordinate2D(), distance: distance)))
-    }
-    
+
     var body: some View {
         Map(position: $position, selection: $selectedId) {
             ForEach(stops.indices, id: \.self) { index in
@@ -48,7 +37,7 @@ struct MapView: View {
             }
         }
         .onChange(of: showSheet){
-            if showSheet == false {
+            if !showSheet {
                 selectedId = nil
             }
         }

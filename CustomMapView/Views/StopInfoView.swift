@@ -68,8 +68,8 @@ struct StopDetailView: View {
                                     Text("\(index + 1)").tag(index) // Adjust to match zero-based index
                                 }
                             }
-                            .onChange(of: selectedIndex) { newIndex in
-                                reorderStop(to: newIndex)
+                            .onChange(of: selectedIndex) {
+                                reorderStop(to: selectedIndex)
                             }
                             .padding([.top, .bottom, .trailing])
                         }
@@ -97,8 +97,12 @@ struct StopDetailView: View {
                                 .padding([.top, .leading, .bottom])
                             Spacer()
                             Picker("Current Driver", selection: $stop.driver) {
-                                Text("Bronelys").tag("Bronelys")
-                                Text("Miguel").tag("Miguel")
+                                ForEach(viewModel.drivers, id: \.self) { driver in
+                                    Text(driver).tag(driver)
+                                }
+                            }
+                            .onChange(of: stop.driver) {
+                                viewModel.updateStopDriver(stopId: stop.id, newDriver: stop.driver)
                             }
                             .padding([.top, .bottom, .trailing])
                         }
