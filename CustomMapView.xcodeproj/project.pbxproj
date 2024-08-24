@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E91CC252C78EFEE00202B55 /* MapScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E91CC242C78EFEE00202B55 /* MapScreenViewModel.swift */; };
 		1EDC51F52C7546CE00626679 /* CustomMapViewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC51F42C7546CE00626679 /* CustomMapViewApp.swift */; };
-		1EDC51F72C7546CE00626679 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC51F62C7546CE00626679 /* ContentView.swift */; };
+		1EDC51F72C7546CE00626679 /* MapScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC51F62C7546CE00626679 /* MapScreenView.swift */; };
 		1EDC51F92C7546CF00626679 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EDC51F82C7546CF00626679 /* Assets.xcassets */; };
 		1EDC51FC2C7546CF00626679 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EDC51FB2C7546CF00626679 /* Preview Assets.xcassets */; };
 		1EDC52062C7546CF00626679 /* CustomMapViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52052C7546CF00626679 /* CustomMapViewTests.swift */; };
 		1EDC52102C7546CF00626679 /* CustomMapViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC520F2C7546CF00626679 /* CustomMapViewUITests.swift */; };
 		1EDC52122C7546CF00626679 /* CustomMapViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52112C7546CF00626679 /* CustomMapViewUITestsLaunchTests.swift */; };
-		1EDC52292C75A9EB00626679 /* StopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52282C75A9EB00626679 /* StopViewModel.swift */; };
 		1EDC522D2C764D6700626679 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC522C2C764D6700626679 /* MapView.swift */; };
 		1EDC522F2C764D8700626679 /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC522E2C764D8700626679 /* StopDetailView.swift */; };
 		1EDC52352C77B45A00626679 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC52342C77B45A00626679 /* Models.swift */; };
@@ -39,9 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E91CC242C78EFEE00202B55 /* MapScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenViewModel.swift; sourceTree = "<group>"; };
 		1EDC51F12C7546CE00626679 /* CustomMapView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomMapView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EDC51F42C7546CE00626679 /* CustomMapViewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapViewApp.swift; sourceTree = "<group>"; };
-		1EDC51F62C7546CE00626679 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1EDC51F62C7546CE00626679 /* MapScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreenView.swift; sourceTree = "<group>"; };
 		1EDC51F82C7546CF00626679 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1EDC51FB2C7546CF00626679 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1EDC52012C7546CF00626679 /* CustomMapViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomMapViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,7 +50,6 @@
 		1EDC520B2C7546CF00626679 /* CustomMapViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomMapViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EDC520F2C7546CF00626679 /* CustomMapViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapViewUITests.swift; sourceTree = "<group>"; };
 		1EDC52112C7546CF00626679 /* CustomMapViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		1EDC52282C75A9EB00626679 /* StopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopViewModel.swift; sourceTree = "<group>"; };
 		1EDC522C2C764D6700626679 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1EDC522E2C764D8700626679 /* StopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailView.swift; sourceTree = "<group>"; };
 		1EDC52342C77B45A00626679 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -107,10 +107,8 @@
 				1EDC52222C7548FF00626679 /* Views */,
 				1EDC52212C7548F800626679 /* ViewModels */,
 				1EDC52202C7548F200626679 /* Models */,
-				1EDC521F2C7546ED00626679 /* StopView */,
 				1EDC521E2C7546E700626679 /* MapView */,
 				1EDC51F42C7546CE00626679 /* CustomMapViewApp.swift */,
-				1EDC51F62C7546CE00626679 /* ContentView.swift */,
 				1EDC51F82C7546CF00626679 /* Assets.xcassets */,
 				1EDC51FA2C7546CF00626679 /* Preview Content */,
 			);
@@ -149,13 +147,6 @@
 			path = MapView;
 			sourceTree = "<group>";
 		};
-		1EDC521F2C7546ED00626679 /* StopView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = StopView;
-			sourceTree = "<group>";
-		};
 		1EDC52202C7548F200626679 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,7 +158,7 @@
 		1EDC52212C7548F800626679 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				1EDC52282C75A9EB00626679 /* StopViewModel.swift */,
+				1E91CC242C78EFEE00202B55 /* MapScreenViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -175,6 +166,7 @@
 		1EDC52222C7548FF00626679 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1EDC51F62C7546CE00626679 /* MapScreenView.swift */,
 				1EDC522C2C764D6700626679 /* MapView.swift */,
 				1EDC522E2C764D8700626679 /* StopDetailView.swift */,
 				1EDC52382C77BCC800626679 /* DropdownSelectorView.swift */,
@@ -313,12 +305,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EDC522D2C764D6700626679 /* MapView.swift in Sources */,
-				1EDC52292C75A9EB00626679 /* StopViewModel.swift in Sources */,
 				1EDC52352C77B45A00626679 /* Models.swift in Sources */,
-				1EDC51F72C7546CE00626679 /* ContentView.swift in Sources */,
+				1EDC51F72C7546CE00626679 /* MapScreenView.swift in Sources */,
 				1EDC522F2C764D8700626679 /* StopDetailView.swift in Sources */,
 				1EDC52392C77BCC800626679 /* DropdownSelectorView.swift in Sources */,
 				1EDC51F52C7546CE00626679 /* CustomMapViewApp.swift in Sources */,
+				1E91CC252C78EFEE00202B55 /* MapScreenViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

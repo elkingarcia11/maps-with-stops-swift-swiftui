@@ -16,14 +16,14 @@ struct Route: Identifiable {
 
 struct Stop: Identifiable {
     let id = UUID()
-    let address: String
-    let city: String
-    let state: String
-    let zipCode: String
-    let coordinates: CLLocationCoordinate2D
-    let comments : String
-    let driver : String
-    let completed : Bool
+    var address: String
+    var city: String
+    var state: String
+    var zipCode: String
+    var coordinates: CLLocationCoordinate2D
+    var comments : String
+    var driver : String
+    var completed : Bool
 }
 
 // Show all stops by default

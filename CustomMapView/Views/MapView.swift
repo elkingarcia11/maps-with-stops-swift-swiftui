@@ -11,17 +11,17 @@ struct MapView: View {
     let distance: Double
     let animationDuration: CGFloat
     
-    // Computed property to get the selected stop
-    private var selectedStop: Stop? {
-        stops.first { $0.address == selectedId }
-    }
+    @Binding var selectedStop: Stop? // Binding to pass selected stop back to ContentView
+    @Binding var showSheet: Bool // Binding to control sheet presentation
     
     // Initializer
-    init(stops: [Stop], markerColor: Color, distance: Double, animationDuration: CGFloat, initialPosition: MapCameraPosition? = nil) {
+    init(stops: [Stop], markerColor: Color, distance: Double, animationDuration: CGFloat, selectedStop: Binding<Stop?>, showSheet: Binding<Bool>, initialPosition: MapCameraPosition? = nil) {
         self.stops = stops
         self.markerColor = markerColor
         self.distance = distance
         self.animationDuration = animationDuration
+        _selectedStop = selectedStop
+        _showSheet = showSheet
         _position = State(initialValue: initialPosition ?? .camera(MapCamera(centerCoordinate: stops.first?.coordinates ?? CLLocationCoordinate2D(), distance: distance)))
     }
     
@@ -36,13 +36,20 @@ struct MapView: View {
             }
         }
         .onChange(of: selectedId) {
-            if let stop = selectedStop {
+            if let stop = stops.first(where: { $0.address == selectedId }) {
                 withAnimation(.easeInOut(duration: animationDuration)) {
                     position = .camera(MapCamera(
                         centerCoordinate: stop.coordinates,
                         distance: distance
                     ))
                 }
+                selectedStop = stop
+                showSheet = true
+            }
+        }
+        .onChange(of: showSheet){
+            if showSheet == false {
+                selectedId = nil
             }
         }
     }

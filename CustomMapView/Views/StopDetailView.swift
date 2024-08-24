@@ -2,70 +2,124 @@ import SwiftUI
 import CoreLocation
 
 struct StopDetailView: View {
-    @ObservedObject var viewModel: StopViewModel
+    @Binding var stop: Stop
+    @Binding var showSheet: Bool
+    @ObservedObject var viewModel: MapScreenViewModel
+    
+    @State private var selectedIndex: Int
+    
+    init(stop: Binding<Stop>, showSheet: Binding<Bool>, viewModel: MapScreenViewModel) {
+        _stop = stop
+        _showSheet = showSheet
+        _selectedIndex = State(initialValue: viewModel.filteredStops.firstIndex(where: { $0.id == stop.wrappedValue.id }) ?? 0)
+        self.viewModel = viewModel
+    }
     
     var body: some View {
-        ZStack{
-            Color(Color.gray)
+        ZStack {
+            Color(.systemGroupedBackground)
+                .edgesIgnoringSafeArea(.all)
+            
             VStack {
-                HStack{
-                    Button("Cancel"){}
+                HStack {
+                    Button("Cancel") {
+                        showSheet = false
+                    }
                     Spacer()
                     Text("Stop Details")
                         .fontWeight(.bold)
                     Spacer()
-                    Button("Done"){}
+                    Button("Done") {
+                        showSheet = false
+                    }
                 }
-                .padding(.vertical, 8)
-                .padding(.horizontal, 16)
+                .padding()
+                
                 Divider()
-               //  CircleWithNumber(number: viewModel.stop.stopOrder, circleColor: .blue, diameter: 75).padding()
-                Form{
+                
+                VStack{
                     HStack{
-                        Image(systemName: "house")
-                        Text("Address")
+                        Text("STOP INFORMATION")
+                            .font(.footnote)
+                            .multilineTextAlignment(.leading)
+                            .foregroundStyle(Color(.systemGray))
                         Spacer()
-                        Button(action: {
-                            // Action for the button
-                            print("Button tapped")
-                        }) {
-                            Text("\(viewModel.stop.address)\n\(viewModel.stop.city), \(viewModel.stop.state) \(viewModel.stop.zipCode)")
+                    }
+                    .padding(.leading, 48)
+                    .padding(.top)
+                    
+                    VStack{
+                        HStack {
+                            Label("Address", systemImage: "house").padding()
+                            Spacer()
+                            Text("\(stop.address)\n\(stop.city), \(stop.state) \(stop.zipCode)")
                                 .font(.headline)
-                                .multilineTextAlignment(.trailing) // Center text alignment
-                                .lineLimit(nil) // Allow multiple lines
-                                .padding()
-                                .frame(maxWidth: .infinity) // Optionally make the button take full width
+                                .multilineTextAlignment(.trailing)
+                                .foregroundColor(.blue).padding()
                         }
-                    }
-                    HStack{
-                        Image(systemName: "truck.box")
-                        Text("Driver")
-                        Spacer()
-                        Button(action: {
-                            // Action for the button
-                            print("Button tapped")
-                        }) {
-                            Text(viewModel.stop.driver)
-                                .font(.headline)
-                                .multilineTextAlignment(.trailing) // Center text alignment
-                                .lineLimit(nil) // Allow multiple lines
-                                .padding()
-                                .frame(maxWidth: .infinity) // Optionally make the button take full width
+                        Divider()
+                        
+                        HStack {
+                            Label("Current Order", systemImage: "list.number")
+                                .padding([.top, .leading, .bottom])
+                            Spacer()
+                            Picker("Current Order", selection: $selectedIndex) {
+                                ForEach(0..<viewModel.filteredStops.count, id: \.self) { index in
+                                    Text("\(index + 1)").tag(index) // Adjust to match zero-based index
+                                }
+                            }
+                            .onChange(of: selectedIndex) { newIndex in
+                                reorderStop(to: newIndex)
+                            }
+                            .padding([.top, .bottom, .trailing])
                         }
+                        Divider()
                     }
-                    Button(action: {}) {
-                        Text("Assign to another driver")
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(.blue)
-                            .clipShape(Capsule())
-                            .shadow(radius: 5)
+                    .background(
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(Color.white)
+                    )
+                    .padding(.horizontal, 20)
+                    
+                    VStack{
+                        HStack{
+                            Text("DRIVER INFORMATION")
+                                .font(.footnote)
+                                .multilineTextAlignment(.leading)
+                                .foregroundStyle(Color(.systemGray))
+                            Spacer()
+                        }
+                        .padding(.leading, 48)
+                        .padding(.top)
+                        
+                        HStack {
+                            Label("Current Driver", systemImage: "truck.box")
+                                .padding([.top, .leading, .bottom])
+                            Spacer()
+                            Picker("Current Driver", selection: $stop.driver) {
+                                Text("Bronelys").tag("Bronelys")
+                                Text("Miguel").tag("Miguel")
+                            }
+                            .padding([.top, .bottom, .trailing])
+                        }
+                        .background(
+                            RoundedRectangle(cornerRadius: 15)
+                                .fill(Color.white)
+                        )
+                        .padding(.horizontal, 20)
                     }
-                    .padding(.bottom, 20)
-                }
-                Spacer()
+                    Spacer()
+                }.padding(.top)
+                
             }
         }
+    }
+    
+    private func reorderStop(to newIndex: Int) {
+        guard let currentIndex = viewModel.stops.firstIndex(where: { $0.id == stop.id }) else {
+            return
+        }
+        viewModel.reorderStop(from: currentIndex, to: newIndex)
     }
 }
 
@@ -82,26 +136,10 @@ struct StopDetailView_Previews: PreviewProvider {
             driver: "Bronelys",
             completed: false
         )
-        let viewModel = StopViewModel(stop: sampleStop)
-        StopDetailView(viewModel: viewModel)
-    }
-}
-
-// Circle with number inside view
-struct CircleWithNumber: View {
-    var number: Int
-    var circleColor: Color
-    var diameter: CGFloat
-    
-    var body: some View {
-        ZStack {
-            Circle()
-                .fill(circleColor)
-                .frame(width: diameter, height: diameter)
-            
-            Text("\(number)")
-                .font(.system(size: diameter / 2))
-                .foregroundColor(.white)
-        }
+        
+        // Use @State to create a mutable instance
+        @State var stateStop = sampleStop
+        @State var showSheet = true
+        StopDetailView(stop: $stateStop, showSheet: $showSheet, viewModel: MapScreenViewModel())
     }
 }
