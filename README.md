@@ -77,7 +77,3 @@ Provides a UI for selecting drivers and displaying the number of stops.
 ## Contributing
 
 Feel free to submit issues or pull requests if you find bugs or want to add features.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
