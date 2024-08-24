@@ -111,7 +111,6 @@
 				1EDC52222C7548FF00626679 /* Views */,
 				1EDC52212C7548F800626679 /* ViewModels */,
 				1EDC52202C7548F200626679 /* Models */,
-				1EDC521E2C7546E700626679 /* MapView */,
 				1EDC51F42C7546CE00626679 /* CustomMapViewApp.swift */,
 				1EDC51F82C7546CF00626679 /* Assets.xcassets */,
 				1EDC51FA2C7546CF00626679 /* Preview Content */,
@@ -142,13 +141,6 @@
 				1EDC52112C7546CF00626679 /* CustomMapViewUITestsLaunchTests.swift */,
 			);
 			path = CustomMapViewUITests;
-			sourceTree = "<group>";
-		};
-		1EDC521E2C7546E700626679 /* MapView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MapView;
 			sourceTree = "<group>";
 		};
 		1EDC52202C7548F200626679 /* Models */ = {
