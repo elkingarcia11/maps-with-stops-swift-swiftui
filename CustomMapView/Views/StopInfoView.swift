@@ -18,8 +18,8 @@ struct StopInfoView: View {
         _selectedIndex = State(initialValue: viewModel.filteredStops.firstIndex(where: { $0.id == stop.wrappedValue.id }) ?? 0)
         self.viewModel = viewModel
         self.role = role
-        self._tempOrder = State(initialValue: _selectedIndex.wrappedValue) // Moved initialization here
-        self._tempDriver = State(initialValue: stop.wrappedValue.driver)   // Moved initialization here
+        self._tempOrder = State(initialValue: _selectedIndex.wrappedValue)
+        self._tempDriver = State(initialValue: stop.wrappedValue.driver)
     }
     
     var body: some View {
@@ -88,19 +88,21 @@ struct StopInfoView: View {
                         }
                     }
                 }
-                .padding(.vertical, 8)
-                .padding(.horizontal)
-                Divider()
-                HStack {
-                    Label("Current Driver", systemImage: "truck.box")
-                    Spacer()
-                    Picker("Current Driver", selection: $tempDriver) {
-                        ForEach(viewModel.drivers, id: \.self) { driver in
-                            Text(driver).tag(driver)
+                .padding(role == "admin" ? EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16) : EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
+                
+                if role == "admin" {
+                    Divider()
+                    HStack {
+                        Label("Current Driver", systemImage: "truck.box")
+                        Spacer()
+                        Picker("Current Driver", selection: $tempDriver) {
+                            ForEach(viewModel.drivers, id: \.self) { driver in
+                                Text(driver).tag(driver)
+                            }
                         }
                     }
+                    .padding()
                 }
-                .padding()
                 /*
                  Divider()
                  HStack{
@@ -160,7 +162,7 @@ struct StopInfoView_Previews: PreviewProvider {
         // Sample data for preview
         let sampleStop = Stop.default
         let sampleViewModel = StopListViewModel()
-        let role = "admin"
+        let role = "user"
         sampleViewModel.drivers = ["Driver A", "Driver B", "Driver C"]
         
         return StopInfoView(stop: .constant(sampleStop), showSheet: .constant(true), viewModel: sampleViewModel, role: role)

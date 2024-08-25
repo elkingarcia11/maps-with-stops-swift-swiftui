@@ -7,7 +7,7 @@ class DriverListViewModel: ObservableObject {
     
     /// The list of drivers available for selection.
     @Published var drivers: [String] = ["All Drivers", "Bronelys", "Miguel"]
-    @Published var role: String = "admin"
+    @Published var role: String = "user"
     // MARK: - Methods
 
     /// Adds a new driver to the list.
