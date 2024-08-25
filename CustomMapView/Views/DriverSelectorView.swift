@@ -2,7 +2,7 @@ import SwiftUI
 
 struct DriverSelectorView: View {
     @Binding var selectedDriver: String
-    
+    let role : String
     let numberOfStops: Int
     let drivers: [String]
     
@@ -11,7 +11,7 @@ struct DriverSelectorView: View {
     private let roundedRectangleCornerRadius: CGFloat = 10
     private let shadowRadius: CGFloat = 5
     private let oneSidedPadding: CGFloat = 8
-
+    
     // Computed property to provide a default value for `selectedDriver`
     private var defaultSelectedDriver: String {
         drivers.first ?? "All Drivers"
@@ -33,7 +33,6 @@ struct DriverSelectorView: View {
             .padding(.trailing, oneSidedPadding)
             
             Divider()
-            
             // Center element: Menu for selecting a driver
             HStack {
                 Menu {
@@ -47,13 +46,13 @@ struct DriverSelectorView: View {
                 } label: {
                     Label(selectedDriver.isEmpty ? defaultSelectedDriver : selectedDriver, systemImage: driverIconName)
                 }
+                .disabled(role != "admin")
                 Spacer()
             }
             .padding([.top, .bottom])
             .padding(.leading, oneSidedPadding)
             
             Divider()
-            
             // Right element: Button with bullet list icon
             HStack {
                 Button(action: {
@@ -78,6 +77,7 @@ struct DriverSelectorView: View {
 #Preview {
     DriverSelectorView(
         selectedDriver: .constant("Driver A"),
+        role: "admin",
         numberOfStops: 5,
         drivers: ["Driver A", "Driver B", "Driver C"]
     )

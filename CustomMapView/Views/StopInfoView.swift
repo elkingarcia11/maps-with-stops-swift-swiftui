@@ -5,15 +5,21 @@ struct StopInfoView: View {
     @Binding var stop: Stop
     @Binding var showSheet: Bool
     @ObservedObject var viewModel: StopListViewModel
-    
     @State private var selectedIndex: Int
+    var role : String
+    
+    @State var tempOrder : Int
+    @State var tempDriver : String
     
     // Custom initializer for setting the initial selectedIndex
-    init(stop: Binding<Stop>, showSheet: Binding<Bool>, viewModel: StopListViewModel) {
+    init(stop: Binding<Stop>, showSheet: Binding<Bool>, viewModel: StopListViewModel, role: String) {
         _stop = stop
         _showSheet = showSheet
         _selectedIndex = State(initialValue: viewModel.filteredStops.firstIndex(where: { $0.id == stop.wrappedValue.id }) ?? 0)
         self.viewModel = viewModel
+        self.role = role
+        self._tempOrder = State(initialValue: _selectedIndex.wrappedValue) // Moved initialization here
+        self._tempDriver = State(initialValue: stop.wrappedValue.driver)   // Moved initialization here
     }
     
     var body: some View {
@@ -28,10 +34,9 @@ struct StopInfoView: View {
                 
                 stopInformationView
                 
-                
-                driverInformationView
-                
+                applyButtonView
                 Spacer()
+                
             }
             .padding(.top)
         }
@@ -48,6 +53,12 @@ struct StopInfoView: View {
                 .fontWeight(.bold)
             Spacer()
             Button("Done") {
+                if tempOrder != selectedIndex {
+                    reorderStop(to: tempOrder)
+                }
+                if stop.driver != tempDriver {
+                    viewModel.updateStopDriver(stopId: stop.id, newDriver: tempDriver)
+                }
                 showSheet = false
             }
         }
@@ -57,85 +68,82 @@ struct StopInfoView: View {
     // Stop information view with address and order picker
     private var stopInformationView: some View {
         VStack {
-            HStack {
-                Text("STOP INFORMATION")
-                    .font(.footnote)
-                    .foregroundColor(Color(.systemGray))
-                Spacer()
-            }
-            .padding(.leading, 48)
-            .padding(.top)
-            
             VStack {
                 HStack {
                     Label("Address", systemImage: "house")
-                        .padding()
                     Spacer()
-                    Text("\(stop.address)\n\(stop.city), \(stop.state) \(stop.zipCode)")
-                        .font(.headline)
+                    Text("\(stop.address)\n\(stop.city), \(stop.state)\n\(stop.zipCode)")
+                        .fontWeight(.medium)
                         .multilineTextAlignment(.trailing)
-                        .foregroundColor(.blue)
-                        .padding()
                 }
+                .padding()
                 Divider()
                 
                 HStack {
                     Label("Current Order", systemImage: "list.number")
-                        .padding([.top, .leading, .bottom])
                     Spacer()
-                    Picker("Current Order", selection: $selectedIndex) {
+                    Picker("Current Order", selection: $tempOrder) {
                         ForEach(0..<viewModel.filteredStops.count, id: \.self) { index in
                             Text("\(index + 1)").tag(index) // Adjust to match zero-based index
                         }
                     }
-                    .onChange(of: selectedIndex) {
-                        reorderStop(to: selectedIndex)
-                    }
-                    .padding([.top, .bottom, .trailing])
                 }
+                .padding(.vertical, 8)
+                .padding(.horizontal)
+                Divider()
+                HStack {
+                    Label("Current Driver", systemImage: "truck.box")
+                    Spacer()
+                    Picker("Current Driver", selection: $tempDriver) {
+                        ForEach(viewModel.drivers, id: \.self) { driver in
+                            Text(driver).tag(driver)
+                        }
+                    }
+                }
+                .padding()
+                /*
+                 Divider()
+                 HStack{
+                 Toggle(isOn: $stop.completed) {
+                 Label("Mark as completed", systemImage: "checkmark.circle")
+                 .foregroundColor(stop.completed ? .green : .primary)
+                 }
+                 .toggleStyle(SwitchToggleStyle(tint: .green))
+                 .padding()
+                 .onChange(of: stop.completed) {
+                 viewModel.updateStopCompletedState(stopId: stop.id, newState: stop.completed)
+                 }
+                 }*/
             }
             .background(
                 RoundedRectangle(cornerRadius: 15)
                     .fill(Color.white)
             )
-            .padding(.horizontal, 20)
+            .padding()
         }
-        .padding(.top)
     }
     
-    // Driver information view with driver picker
-    private var driverInformationView: some View {
-        VStack {
-            HStack {
-                Text("DRIVER INFORMATION")
-                    .font(.footnote)
-                    .foregroundColor(Color(.systemGray))
-                Spacer()
+    
+    private var applyButtonView: some View {
+        Button(action: {
+            if tempOrder != selectedIndex {
+                reorderStop(to: tempOrder)
             }
-            .padding(.leading, 48)
-            .padding(.top)
-            
-            HStack {
-                Label("Current Driver", systemImage: "truck.box")
-                    .padding([.top, .leading, .bottom])
-                Spacer()
-                Picker("Current Driver", selection: $stop.driver) {
-                    ForEach(viewModel.drivers, id: \.self) { driver in
-                        Text(driver).tag(driver)
-                    }
-                }
-                .onChange(of: stop.driver) {
-                    viewModel.updateStopDriver(stopId: stop.id, newDriver: stop.driver)
-                }
-                .padding([.top, .bottom, .trailing])
+            if stop.driver != tempDriver {
+                viewModel.updateStopDriver(stopId: stop.id, newDriver: tempDriver)
             }
-            .background(
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(Color.white)
-            )
-            .padding(.horizontal, 20)
+            showSheet = false
+        }) {
+            Text("Apply")
+                .font(.headline)
+                .foregroundColor(.white)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(Color.blue)
+                .cornerRadius(10)
         }
-        .padding(.top)
+        .padding([.top, .leading, .trailing], 20)
+        
     }
     
     // Reorders the stop in the view model
@@ -152,9 +160,9 @@ struct StopInfoView_Previews: PreviewProvider {
         // Sample data for preview
         let sampleStop = Stop.default
         let sampleViewModel = StopListViewModel()
-        
+        let role = "admin"
         sampleViewModel.drivers = ["Driver A", "Driver B", "Driver C"]
         
-        return StopInfoView(stop: .constant(sampleStop), showSheet: .constant(true), viewModel: sampleViewModel)
+        return StopInfoView(stop: .constant(sampleStop), showSheet: .constant(true), viewModel: sampleViewModel, role: role)
     }
 }

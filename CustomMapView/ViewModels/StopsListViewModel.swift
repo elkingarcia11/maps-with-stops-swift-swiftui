@@ -38,4 +38,12 @@ class StopListViewModel: ObservableObject {
         }
         stops[index].driver = newDriver
     }
+    
+    func updateStopCompletedState(stopId: UUID, newState: Bool){
+        guard let index = stops.firstIndex(where: { $0.id == stopId }) else {
+            return
+        }
+        stops[index].completed = newState
+        
+    }
 }

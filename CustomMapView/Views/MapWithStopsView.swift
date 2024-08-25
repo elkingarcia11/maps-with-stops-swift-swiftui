@@ -28,7 +28,8 @@ struct MapWithStopsView: View {
                             set: { mapViewModel.selectedStop = $0 }
                         ),
                         showSheet: $mapViewModel.showSheet,
-                        viewModel: stopListViewModel
+                        viewModel: stopListViewModel,
+                        role:  driverListViewModel.role
                     )
                     .presentationDetents([.medium, .large])
                 }
@@ -37,6 +38,7 @@ struct MapWithStopsView: View {
             // Driver selector view
             DriverSelectorView(
                 selectedDriver: $stopListViewModel.selectedDriver,
+                role : driverListViewModel.role, 
                 numberOfStops: stopListViewModel.filteredStops.count,
                 drivers: driverListViewModel.drivers
             )
