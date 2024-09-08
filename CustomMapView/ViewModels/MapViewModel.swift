@@ -27,7 +27,7 @@ class MapViewModel: ObservableObject {
     func updatePosition(for stop: Stop) {
         withAnimation(.easeInOut(duration: animationDuration)) {
             position = .camera(MapCamera(
-                centerCoordinate: stop.coordinates,
+                centerCoordinate: stop.sender.coordinates,
                 distance: distance
             ))
         }

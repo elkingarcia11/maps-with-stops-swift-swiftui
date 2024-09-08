@@ -18,9 +18,9 @@ struct StopMapView: View {
         Map(position: $position, selection: $selectedId) {
             ForEach(stops.indices, id: \.self) { index in
                 let stop = stops[index]
-                Marker(stop.address, monogram: Text(String(index + 1)), coordinate: stop.coordinates)
+                Marker(stop.sender.address, monogram: Text(String(index + 1)), coordinate: stop.sender.coordinates)
                     .tint(markerColor)
-                    .tag(stop.address)
+                    .tag(stop.sender.address)
                     .annotationTitles(.hidden)
             }
         }
@@ -35,10 +35,10 @@ struct StopMapView: View {
     // Handles changes to the selectedId
     private func handleSelectedIdChange(_ newSelectedId: String?) {
         if let address = newSelectedId,
-           let stop = stops.first(where: { $0.address == address }) {
+           let stop = stops.first(where: { $0.sender.address == address }) {
             withAnimation(.easeInOut(duration: animationDuration)) {
                 position = .camera(MapCamera(
-                    centerCoordinate: stop.coordinates,
+                    centerCoordinate: stop.sender.coordinates,
                     distance: distance
                 ))
             }

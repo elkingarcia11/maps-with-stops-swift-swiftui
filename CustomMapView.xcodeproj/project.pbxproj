@@ -11,6 +11,7 @@
 		1E63A8612C7991E0002C1963 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E63A8602C7991E0002C1963 /* MapViewModel.swift */; };
 		1E63A8632C7991ED002C1963 /* DriverListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E63A8622C7991ED002C1963 /* DriverListViewModel.swift */; };
 		1E63A8652C7996A4002C1963 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E63A8642C7996A4002C1963 /* Stop.swift */; };
+		1E63A8672C7AEC3D002C1963 /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E63A8662C7AEC3D002C1963 /* StopDetailView.swift */; };
 		1EDC51F52C7546CE00626679 /* CustomMapViewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC51F42C7546CE00626679 /* CustomMapViewApp.swift */; };
 		1EDC51F72C7546CE00626679 /* MapWithStopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDC51F62C7546CE00626679 /* MapWithStopsView.swift */; };
 		1EDC51F92C7546CF00626679 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EDC51F82C7546CF00626679 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		1E63A8602C7991E0002C1963 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		1E63A8622C7991ED002C1963 /* DriverListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverListViewModel.swift; sourceTree = "<group>"; };
 		1E63A8642C7996A4002C1963 /* Stop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		1E63A8662C7AEC3D002C1963 /* StopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailView.swift; sourceTree = "<group>"; };
 		1EDC51F12C7546CE00626679 /* CustomMapView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomMapView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EDC51F42C7546CE00626679 /* CustomMapViewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMapViewApp.swift; sourceTree = "<group>"; };
 		1EDC51F62C7546CE00626679 /* MapWithStopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWithStopsView.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				1EDC522C2C764D6700626679 /* StopMapView.swift */,
 				1EDC522E2C764D8700626679 /* StopInfoView.swift */,
 				1EDC52382C77BCC800626679 /* DriverSelectorView.swift */,
+				1E63A8662C7AEC3D002C1963 /* StopDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EDC522D2C764D6700626679 /* StopMapView.swift in Sources */,
+				1E63A8672C7AEC3D002C1963 /* StopDetailView.swift in Sources */,
 				1E63A8632C7991ED002C1963 /* DriverListViewModel.swift in Sources */,
 				1EDC51F72C7546CE00626679 /* MapWithStopsView.swift in Sources */,
 				1EDC522F2C764D8700626679 /* StopInfoView.swift in Sources */,

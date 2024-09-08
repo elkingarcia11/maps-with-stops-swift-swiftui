@@ -72,7 +72,7 @@ struct StopInfoView: View {
                 HStack {
                     Label("Address", systemImage: "house")
                     Spacer()
-                    Text("\(stop.address)\n\(stop.city), \(stop.state)\n\(stop.zipCode)")
+                    Text("\(stop.sender.address)\n\(stop.sender.city), \(stop.sender.state)\n\(stop.sender.zip)")
                         .fontWeight(.medium)
                         .multilineTextAlignment(.trailing)
                 }
